@@ -1,3 +1,1 @@
-1- Verificar tamanho ao filtrar, principalmente nepal.
-
-2- Tela de detalhe
+1- Editar o README.md

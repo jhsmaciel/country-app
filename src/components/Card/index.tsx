@@ -36,12 +36,21 @@ const CardBox = styled.div<StyleProps>`
     border-radius: 8px;
     cursor: pointer;
     box-shadow: 1px 2px 5px 1px rgba(0,0,0,0.1);
+
+    
+    @media (min-width: 767.98px) {
+        max-width: 280px;
+    }
+
 `
 
 const Img = styled.img`
+    overflow: hidden;
+    width: 100%;
+    object-fit: cover;
+    aspect-ratio: 3.3/2;
     border-top-left-radius: 8px;
     border-top-right-radius: 8px;
-    width: 100%;
 `
 
 const Infos = styled.div`
