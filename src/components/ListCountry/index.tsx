@@ -5,12 +5,14 @@ import { Card } from 'components/Card';
 import { SearchInput } from 'components/Input';
 import { SelectOption } from 'components/Select';
 import { REGIONS } from 'constants/constants';
+import { LoadingIndicator } from 'components/LoadingIndicator';
 
 interface ListCountryProps {
     countries: Country[];
+    loading: boolean;
 }
 
-export const ListCountry: React.FC<ListCountryProps> = ({ countries }) => {
+export const ListCountry: React.FC<ListCountryProps> = ({ countries, loading }) => {
 
     const [searchText, setSearchText] = useState<string | undefined>(undefined);
     const [region, setRegion] = useState<string | undefined>(undefined);
@@ -40,8 +42,6 @@ export const ListCountry: React.FC<ListCountryProps> = ({ countries }) => {
         return false;
     }, [searchText, region, containsInfo, isSameRegion])
 
-    
-
     return (
         <Content>
             <Filters>
@@ -57,13 +57,19 @@ export const ListCountry: React.FC<ListCountryProps> = ({ countries }) => {
                     value={region}
                 />
             </Filters>
-            <List>
-                {
-                    countries
-                        .filter(item => filterByRegionAndText(item))
-                        .map(country => <Card key={country.name.common + country.ccn3} country={country} />)
-                }
-            </List>
+            {
+                loading ? <LoadingIndicator /> : 
+                (
+
+                    <List>
+                        {
+                            countries
+                                .filter(item => filterByRegionAndText(item))
+                                .map(country => <Card key={country.name.common + country.ccn3} country={country} />)
+                        }
+                    </List>
+                )
+            }
         </Content>
     );
 }
