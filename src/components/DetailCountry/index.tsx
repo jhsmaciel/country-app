@@ -80,15 +80,20 @@ export const DetailCountry: React.FC<DetailCountryProps> = ({ countries }) => {
                             <LabelValue label='Languages' value={getLanguages()} />
                         </ColumnBoxLabelValue>
                     </BoxLabelValue>
-                    <BoxBorderCountries>
-                        <Label styleContext={style} style={{ marginRight: 10, marginBottom: 7 }}>Border Countries: </Label>
-                        <BoxButtons>
-                            {
-                                selectedCountry?.borders
-                                    .map(it => <Button onClick={() => onOpen(it)} style={{marginRight: 7, marginBottom: 7}}>{getNameByCca3(it)}</Button>)
-                            }
-                        </BoxButtons>
-                    </BoxBorderCountries>
+                    {
+                        selectedCountry?.borders && (
+                            <BoxBorderCountries>
+                                <Label styleContext={style} style={{ marginRight: 10, marginBottom: 7 }}>Border Countries: </Label>
+                                <BoxButtons>
+                                    {
+                                        selectedCountry.borders
+                                            .map(it => <Button onClick={() => onOpen(it)} style={{marginRight: 7, marginBottom: 7}}>{getNameByCca3(it)}</Button>)
+                                    }
+                                </BoxButtons>
+                            </BoxBorderCountries>
+                        )
+                    }
+                    
                 </Informations>
             </Detail>
         </div>
